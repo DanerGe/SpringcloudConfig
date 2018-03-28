@@ -1,0 +1,23 @@
+server:
+  port: 8768
+spring:
+  application:
+    name: zuul-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: FEIGN-SERVER
+    api-b:
+      path: /api-b/**
+      serviceId: RIBBON-SPRINGCLOUD
+    api-c:
+      path: /api-c/**
+      serviceId: HYSTRIX-SERVER
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
